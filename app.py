@@ -1,10 +1,14 @@
-from flask import Flask
-app = Flask(__name__)
+from app import returnBackwardsString
+import unittest
 
-@app.route('/<random_string>')
-def returnBackwardsString(random_string):
-    """Reverse and return the provided URI"""
-    return "Breaking the unit test"
+class TestApp(unittest.TestCase):
+    """Unit tests defined for app.py"""
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    def test_return_backwards_string(self):
+        """Test return backwards simple string"""
+        random_string = "This is my test string"
+        random_string_reversed = "gnirts tset ym si sihT"
+        self.assertEqual(random_string_reversed, returnBackwardsString(random_string))
+
+if __name__ == "__main__":
+    unittest.main()
